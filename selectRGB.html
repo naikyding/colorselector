@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!-- googleFont -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    
+    <title>ColorSeletor</title>
+    <style>
+        body{
+            font-family: 'Montserrat', sans-serif;
+        }
+        h1{
+            font-weight: 100;
+            font-size: 1rem;
+        }
+        h6{
+            font-size: .8rem;
+        }
+        .color{
+
+            box-sizing: border-box;
+            text-align: center;
+        }
+        h3{
+            color:#fff;
+            font-size: 2rem;
+            height: 100%;
+            line-height: 4rem;
+        }
+        .hex_name{
+            border:1px solid #fff;
+            width:20rem;
+            height:4rem;
+            border-radius:.4rem;
+            position: relative;
+        }
+        .hex_name::before{
+            content: 'HEX';
+            position: absolute;
+            color:#fff;
+            top:-2.5rem;
+            left: 37%;
+            font-size: 2rem;
+        }
+        .rgb_name{
+            border:1px solid #fff;
+            width:20rem;
+            height:4rem;
+            border-radius:.4rem;
+            position: relative;
+        }
+        .rgb_name::before{
+            content: 'RGB';
+            position: absolute;
+            color:#fff;
+            top:-2.5rem;
+            left: 37%;
+            font-size: 2rem;
+        }
+        input{
+            width:20rem !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid color d-flex flex-column justify-content-between" style="height:100vh;width:100vw" >
+
+    <div class="row">
+        <div class="col">
+            <h1 class="text-left text-white my-3">ColorSeletor</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col ">
+            <div class="hex_name my-5 d-inline-block ">
+                <h3 class=""></h3>
+            </div>
+            <br>
+            <div class="rgb_name d-inline-block ">
+                <h3 class="rgb"></h3>
+            </div> 
+            <div class="contrl text-center d-flex flex-column mt-3" >
+                <div class="bar ">
+                    <p class="text-danger ">RED</p>
+                    <input id="red" class="custom-range" type="range" min="0" max="255" step="1" onchange="selector()" >
+                </div>
+                <div class="bar ">
+                    <p class="  text-success">GREEN</p>
+                    <input id="green" class="custom-range" type="range" min="0" max="255" step="1" onchange="selector()">
+                </div>
+                <div class="bar ">
+                    <p class="text-primary">BLUE</p>
+                    <input id="blue" class="custom-range" type="range" min="0" max="255" step="1" onchange="selector()">
+                </div>
+            </div>
+            <div class="btn text-center  ">
+                <button class="plus_btn btn btn-primary mx-2" onclick="plus()"  onmousedown="keepPlus()" onmouseup="clearPlus()" onmouseout="clearPlus()" >+</button>
+                <button class="less_btn btn btn-danger mx-2" onclick="less()"  onmousedown="keepLess()" onmouseup="clearLess()" onmouseout="clearLess()">-</button>
+                <button class="less_btn btn btn-success mx-2" onclick="randomNum()"  onmousedown="keepRandom()" onmouseup="clearRandom()" onmouseout="clearRandom()">?</button>
+            </div> 
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col">
+            <h6 class="text-white">Design By NaikyDing</h6>
+        </div>
+    </div>
+
+</div>
+    <script>
+        var red = 0;
+        var green = 0;
+        var blue = 0;
+        var color_rgb;
+        var plus_id;
+        var less_id;
+        var hexClr;
+
+        //everyTimeEnterRandomColor
+        randomNum();
+
+        function pushColor(red,green,blue){
+            document.querySelector('#red').value=red;
+            document.querySelector('#green').value=green;
+            document.querySelector('#blue').value=blue;
+        }
+
+        function hex_color(red,green,blue){
+            hex_red = parseInt(red)<=15?`0${parseInt(red).toString(16)}`:parseInt(red).toString(16);
+            hex_green = parseInt(green)<=15?`0${parseInt(green).toString(16)}`:parseInt(green).toString(16);
+            hex_blue = parseInt(blue)<=15?`0${parseInt(blue).toString(16)}`:parseInt(blue).toString(16);
+            return '#'+hex_red+hex_green+hex_blue;
+        }
+        function input(){
+            let clr = document.querySelector('#rgb_val').value;
+            document.querySelector('.color').style.backgroundColor=clr;
+        }
+        function selector(){
+            red = document.querySelector('#red').value;
+            green = document.querySelector('#green').value;
+            blue = document.querySelector('#blue').value;
+            color_rgb = `rgb(${red},${green},${blue})`;
+            document.querySelector('h3').textContent=hex_color(red,green,blue);
+            document.querySelector('.rgb').textContent=`rgb(${red},${green},${blue})`;
+            document.querySelector('.color').style.backgroundColor=color_rgb;
+            document.querySelector('.clr_name::before').style.backgroundColor=color_rgb;
+        }
+        //////////////////////////////////////////////////////////////////////
+        function plus(){
+            if(red==255 || green==255 || blue==255){
+            }else{
+                red++;
+                green++;
+                blue++;
+                pushColor(red,green,blue);
+                color_rgb = `rgb(${red},${green},${blue})`;
+                document.querySelector('h3').textContent=hex_color(red,green,blue);
+                document.querySelector('.rgb').textContent=`rgb(${red},${green},${blue})`;
+                document.querySelector('.color').style.backgroundColor=color_rgb;  
+            }
+        }
+        function less(){
+            if(red<=0 || green<=0 || blue<=0){
+            }else{
+                red--;
+                green--;
+                blue--;
+                pushColor(red,green,blue);
+                color_rgb = `rgb(${red},${green},${blue})`;
+                document.querySelector('h3').textContent=hex_color(red,green,blue);
+                document.querySelector('.rgb').textContent=`rgb(${red},${green},${blue})`;
+                document.querySelector('.color').style.backgroundColor=color_rgb;  
+            }
+        }
+        //////////////////////////////////////////////////////////////////////
+        function keepPlus(){
+            if(red==255 || green==255 || blue==255){
+                clearInterval(plus_id);
+                alert(`其中一項到達上限`);
+
+                }else{
+                    plus_id=setInterval(plus,150);
+                }
+            }
+        function keepLess(){
+            if(red<=0 || green<=0 || blue<=0){
+                clearInterval(less_id);
+                alert(`其中一項到達下限`);
+                }else{
+                    less_id=setInterval(less,150);
+                }
+            }
+        //////////////////////////////////////////////////////////////////////
+        function clearPlus(){clearInterval(plus_id)}
+        function clearLess(){clearInterval(less_id)}
+        //////////////////////////////////////////////////////////////////////
+        var random_id;
+
+        function randomNum(){
+            red = Math.floor(Math.random()*256);
+            green = Math.floor(Math.random()*256);
+            blue = Math.floor(Math.random()*256);
+            pushColor(red,green,blue);
+            color_rgb = `rgb(${red},${green},${blue})`;
+            document.querySelector('h3').textContent=hex_color(red,green,blue);
+            document.querySelector('.rgb').textContent=`rgb(${red},${green},${blue})`;
+            document.querySelector('.color').style.backgroundColor=color_rgb; 
+        }
+        function keepRandom(){
+            random_id=setInterval(randomNum,150);
+        }
+        function clearRandom(){clearInterval(random_id)}
+    </script>
+</body>
+</html>
