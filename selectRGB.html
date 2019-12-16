@@ -100,9 +100,9 @@
                 </div>
             </div>
             <div class="btn text-center  ">
-                <button class="plus_btn btn btn-primary mx-2" onclick="plus()"  onmousedown="keepPlus()" onmouseup="clearPlus()" onmouseout="clearPlus()" >+</button>
-                <button class="less_btn btn btn-danger mx-2" onclick="less()"  onmousedown="keepLess()" onmouseup="clearLess()" onmouseout="clearLess()">-</button>
-                <button class="less_btn btn btn-success mx-2" onclick="randomNum()"  onmousedown="keepRandom()" onmouseup="clearRandom()" onmouseout="clearRandom()">?</button>
+                <button class="btn-lg  plus_btn btn btn-primary mx-2" onclick="plus()"  onmousedown="keepPlus()" onmouseup="clearPlus()" onmouseout="clearPlus()" >+</button>
+                <button class="btn-lg less_btn btn btn-danger mx-2" onclick="less()"  onmousedown="keepLess()" onmouseup="clearLess()" onmouseout="clearLess()">-</button>
+                <button class="btn-lg less_btn btn btn-success mx-2" onclick="randomNum()"  onmousedown="keepRandom()" onmouseup="clearRandom()" onmouseout="clearRandom()">?</button>
             </div> 
         </div>
     </div>
@@ -183,7 +183,7 @@
         function keepPlus(){
             if(red==255 || green==255 || blue==255){
                 clearInterval(plus_id);
-                alert(`其中一項到達上限`);
+                alert(`One of the items reached its limit!!`);
 
                 }else{
                     plus_id=setInterval(plus,150);
@@ -192,7 +192,7 @@
         function keepLess(){
             if(red<=0 || green<=0 || blue<=0){
                 clearInterval(less_id);
-                alert(`其中一項到達下限`);
+                alert(`One of the items reached its limit!!`);
                 }else{
                     less_id=setInterval(less,150);
                 }
