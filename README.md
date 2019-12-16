@@ -1,7 +1,7 @@
 ## ColorSelector [link](https://naikyding.github.io/colorselector/selectRGB.html)
 
-![](https://i.imgur.com/9EHIsSV.gif)
-(https://naikyding.github.io/colorselector/selectRGB.html)Every time you enter this page, it will have different color changes.
+[![](https://i.imgur.com/2tEI1gE.png)
+](https://naikyding.github.io/colorselector/selectRGB.html)Every time you enter this page, it will have different color changes.
 
 - ### HEX & RGB color
     It will show two different color specifications
