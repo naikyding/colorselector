@@ -11,3 +11,10 @@
     ![](https://i.imgur.com/5P8YRQo.gif)
     
 
+- ### Continuously changing features
+    Increase / Decrease / Random  (keep change)
+![](https://i.imgur.com/INpSAI9.gif)
+
+- ### Alert
+    One of the items reached its limit!!
+![](https://i.imgur.com/jNSjqjK.gif)
